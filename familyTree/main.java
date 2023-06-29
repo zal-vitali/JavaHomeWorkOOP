@@ -27,8 +27,8 @@ public class main {
 
         for (Human child : father.getChildren()) {
             System.out.println(child);
-            //System.out.printf("Отец: %d", child.getFather().toString());
-            //System.out.printf("Мать: %d", child.getMother().toString());
+            System.out.println("Отец: " + child.getFather());
+            System.out.println("Мать: " + child.getMother());
         }
 
     }

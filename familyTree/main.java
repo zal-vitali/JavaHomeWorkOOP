@@ -1,11 +1,13 @@
 package JavaHomeWorkOOP.familyTree;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class main {
+public class Main{
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ClassNotFoundException, IOException {
+        Tree tree = new Tree();
         ArrayList<Human> children = new ArrayList<>();
         Human ivan = new Human(Sex.male, "Иван", "Иванов", LocalDate.of(2008, 1, 7), null, new ArrayList<>(), null);
         Human nataly = new Human(Sex.female, "Наталья", "Иванова", LocalDate.of(2012, 4, 9), null, new ArrayList<>(), null);
@@ -25,10 +27,22 @@ public class main {
         mother.setMarryedBy(father);
         father.setMarryedBy(mother);
 
-        for (Human child : father.getChildren()) {
-            System.out.println(child);
-            System.out.println("Отец: " + child.getFather());
-            System.out.println("Мать: " + child.getMother());
+        tree.addHuman(father);
+        tree.addHuman(mother);
+        tree.addHuman(ivan);
+        tree.addHuman(nataly);
+
+         for (Human element : tree.getHumanList()) {
+            System.out.println(element);
+         }
+        System.out.println("--------------------------");
+        
+        InputOutput io = new InputOutput();
+        //io.saveToFile(tree);
+
+        Tree restoredTree = io.restoreFromFile();
+        for (Human element : restoredTree.getHumanList()) {
+            System.out.println(element);
         }
 
     }

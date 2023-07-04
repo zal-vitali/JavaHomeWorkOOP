@@ -1,10 +1,11 @@
 package JavaHomeWorkOOP.familyTree;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.ArrayList;
 
-public class Human {
+public class Human implements Serializable{
     private Sex sex;
     private String firstName;
     private String lastName;
@@ -25,7 +26,7 @@ public class Human {
     }
 
     public Human() {
-        this(Sex.male,"uncnown", "uncnown",LocalDate.of(1, 1, 1), LocalDate.of(1, 1, 1),new ArrayList<>(),new Human());       
+        this(Sex.male,"uncnown", "uncnown",null, null,new ArrayList<>(),new Human());       
     }
 
     public void setMarryedBy(Human marryedBy) {
@@ -42,8 +43,39 @@ public class Human {
 
     @Override
     public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(this.firstName + " " +this.lastName);
         
-        return this.firstName + " " +this.lastName + " д.р: "+ this.birtDay.toString();
+        if(this.deathDay == null){
+            sb.append(" д/р: ");
+            sb.append(this.birtDay.toString()); 
+        }
+        else{
+            sb.append(this.birtDay.toString());
+            sb.append("-");
+            sb.append(this.deathDay.toString());
+        }
+        sb.append(". Отец: ");
+        if(!(this.father == null)){
+            sb.append(this.father.firstName);
+            sb.append(" "); 
+            sb.append(this.father.lastName);
+        }
+        else{
+            sb.append("неизвестен");
+        }
+
+        sb.append(". Мать: ");
+        if(!(this.father == null)){
+            sb.append(this.mother.firstName);
+            sb.append(" "); 
+            sb.append(this.mother.lastName);
+        }
+        else{
+            sb.append("неизвестна");
+        }
+
+        return sb.toString();
     }
 
     public List<Human> getChildren() {

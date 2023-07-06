@@ -1,11 +1,11 @@
-package JavaHomeWorkOOP.familyTree;
+package JavaHomeWorkOOP.familyTree.human;
 
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.ArrayList;
 
-public class Human implements Serializable{
+public class Human implements Serializable,Comparable<Human>{
     private Sex sex;
     private String firstName;
     private String lastName;
@@ -88,5 +88,14 @@ public class Human implements Serializable{
 
     public Human getFather() {
         return father;
+    }
+
+    public LocalDate getBirtDay() {
+        return birtDay;
+    }
+
+    @Override
+    public int compareTo(Human o) {
+        return firstName.compareTo(o.firstName);
     }
 }

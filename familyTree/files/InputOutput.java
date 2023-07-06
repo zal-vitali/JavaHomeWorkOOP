@@ -1,4 +1,4 @@
-package JavaHomeWorkOOP.familyTree;
+package JavaHomeWorkOOP.familyTree.files;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -6,7 +6,9 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-public class InputOutput {
+import JavaHomeWorkOOP.familyTree.tree.Tree;
+
+public class InputOutput implements Serial{
     public void saveToFile(Tree tree) throws IOException, ClassNotFoundException{
         ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream("tree.txt"));
         os.writeObject(tree);
@@ -21,4 +23,5 @@ public class InputOutput {
         return tree;
 
     }
+
 }
